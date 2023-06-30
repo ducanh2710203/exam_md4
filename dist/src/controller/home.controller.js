@@ -39,7 +39,13 @@ class HomeController {
             const id = req.params.id;
             const currentStudent = await student_1.Student.findOne({ _id: id });
             if (currentStudent) {
-                await currentStudent.updateOne(Object.assign({}, req.body));
+                currentStudent.name = req.body.name;
+                currentStudent.theoreticalPoint = req.body.theoreticalPoint;
+                currentStudent.practicePoints = req.body.practicePoints;
+                currentStudent.describe = req.body.describe;
+                currentStudent.evaluate = req.body.evaluate;
+                currentStudent.class = req.body.class;
+                await currentStudent.save();
                 res.redirect('/');
             }
             else {
