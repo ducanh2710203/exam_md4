@@ -1,10 +1,11 @@
-import {Product} from "../model/schemas/product";
+import {Student} from "../model/schemas/student";
 
 class HomeController {
     static async getHomePage(req, res) {
         try {
-            const listProduct = await Product.find()
-            res.render('home', {listProduct})
+            const listStudent = await Student.find()
+            const sortStudent = await Student.find().sort({"theoreticalPoint": 1})
+            res.render('home', {listStudent:sortStudent})
         } catch (err) {
             console.log(err.message)
         }
@@ -18,28 +19,27 @@ class HomeController {
         }
     }
 
-    static async deleteProduct(req, res) {
-        await Product.findByIdAndDelete(req.params.id)
+    static async deleteStudent(req, res) {
+        await Student.findByIdAndDelete(req.params.id)
         res.redirect("/")
     }
 
     static async getEditPage(req, res) {
         try {
             const id = req.params.id
-            const product = await Product.findOne({_id: id})
-            console.log(product)
-            res.render('edit', {product})
+            const student = await Student.findOne({_id: id})
+            res.render('edit', {student})
         } catch (err) {
             console.log(err.message)
         }
     }
 
-    static async EditProduct(req, res) {
+    static async EditStudent(req, res) {
         try {
             const id = req.params.id
-            const currentProduct = await Product.findOne({_id: id})
-            if(currentProduct){
-                await Product.updateOne({...req.body})
+            const currentStudent = await Student.findOne({_id: id})
+            if(currentStudent){
+                await currentStudent.updateOne({...req.body})
                 res.redirect('/')
             }else {
                 res.redirect("/edit/:id")
@@ -48,12 +48,12 @@ class HomeController {
             console.log(err.message)
         }
     }
-    static async createProduct(req, res) {
+    static async createStudent(req, res) {
         try {
             const id = req.params.id
-            const newProduct = await new Product({...req.body})
-            if(newProduct){
-                await newProduct.save()
+            const newStudent = await new Student({...req.body})
+            if(newStudent){
+                await newStudent.save()
                 res.redirect('/')
             }else {
                 res.redirect("/edit/:id")
@@ -62,14 +62,21 @@ class HomeController {
             console.log(err.message)
         }
     }
-    static async searchProduct(req, res) {
-    try {
-        const keywordSearch = req.query.keyword || '';
-        console.log(keywordSearch)
-    }catch (err) {
-        console.log(err.message)
+    static async getDetailPage(req, res) {
+        try {
+            const id = req.params.id
+            const student = await Student.findOne({_id:id})
+            if (student){
+                res.render('detail', {student})
+            }else {
+                res.redirect('/')
+            }
+
+        } catch (err) {
+            console.log(err.message)
+        }
     }
-    }
+
 }
 
 export default HomeController;

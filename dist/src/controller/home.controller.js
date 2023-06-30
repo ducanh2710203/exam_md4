@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const product_1 = require("../model/schemas/product");
+const student_1 = require("../model/schemas/student");
 class HomeController {
     static async getHomePage(req, res) {
         try {
-            const listProduct = await product_1.Product.find();
-            res.render('home', { listProduct });
+            const listStudent = await student_1.Student.find();
+            const sortStudent = await student_1.Student.find().sort({ "theoreticalPoint": 1 });
+            res.render('home', { listStudent: sortStudent });
         }
         catch (err) {
             console.log(err.message);
@@ -19,27 +20,26 @@ class HomeController {
             console.log(err.message);
         }
     }
-    static async deleteProduct(req, res) {
-        await product_1.Product.findByIdAndDelete(req.params.id);
+    static async deleteStudent(req, res) {
+        await student_1.Student.findByIdAndDelete(req.params.id);
         res.redirect("/");
     }
     static async getEditPage(req, res) {
         try {
             const id = req.params.id;
-            const product = await product_1.Product.findOne({ _id: id });
-            console.log(product);
-            res.render('edit', { product });
+            const student = await student_1.Student.findOne({ _id: id });
+            res.render('edit', { student });
         }
         catch (err) {
             console.log(err.message);
         }
     }
-    static async EditProduct(req, res) {
+    static async EditStudent(req, res) {
         try {
             const id = req.params.id;
-            const currentProduct = await product_1.Product.findOne({ _id: id });
-            if (currentProduct) {
-                await product_1.Product.updateOne(Object.assign({}, req.body));
+            const currentStudent = await student_1.Student.findOne({ _id: id });
+            if (currentStudent) {
+                await currentStudent.updateOne(Object.assign({}, req.body));
                 res.redirect('/');
             }
             else {
@@ -50,12 +50,12 @@ class HomeController {
             console.log(err.message);
         }
     }
-    static async createProduct(req, res) {
+    static async createStudent(req, res) {
         try {
             const id = req.params.id;
-            const newProduct = await new product_1.Product(Object.assign({}, req.body));
-            if (newProduct) {
-                await newProduct.save();
+            const newStudent = await new student_1.Student(Object.assign({}, req.body));
+            if (newStudent) {
+                await newStudent.save();
                 res.redirect('/');
             }
             else {
@@ -66,10 +66,16 @@ class HomeController {
             console.log(err.message);
         }
     }
-    static async searchProduct(req, res) {
+    static async getDetailPage(req, res) {
         try {
-            const keywordSearch = req.query.keyword || '';
-            console.log(keywordSearch);
+            const id = req.params.id;
+            const student = await student_1.Student.findOne({ _id: id });
+            if (student) {
+                res.render('detail', { student });
+            }
+            else {
+                res.redirect('/');
+            }
         }
         catch (err) {
             console.log(err.message);

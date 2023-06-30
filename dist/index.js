@@ -21,11 +21,11 @@ db.connect().then(r => {
 });
 app.get('/', home_controller_1.default.getHomePage);
 app.get('/create', home_controller_1.default.getCreatePage);
-app.post('/create', home_controller_1.default.createProduct);
-app.get('/delete/:id', home_controller_1.default.deleteProduct);
+app.post('/create', home_controller_1.default.createStudent);
+app.get('/delete/:id', home_controller_1.default.deleteStudent);
 app.get('/edit/:id', home_controller_1.default.getEditPage);
-app.post('/edit/:id', home_controller_1.default.EditProduct);
-app.get("/search", home_controller_1.default.searchProduct);
+app.post('/edit/:id', home_controller_1.default.EditStudent);
+app.get('/detail/:id', home_controller_1.default.getDetailPage);
 app.listen(port, () => {
     console.log(`http://localhost:${port}`);
 });

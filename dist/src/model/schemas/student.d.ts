@@ -23,7 +23,7 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Schema } from "mongoose";
-export declare const Product: import("mongoose").Model<{
+export declare const Student: import("mongoose").Model<{
     name?: string;
     theoreticalPoint?: number;
     practicePoints?: number;

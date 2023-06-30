@@ -11,46 +11,41 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<%- include('header.ejs'); -%>
+<%- include('header.ejs') -%>
 <div class="container">
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">id</th>
-        <th scope="col">name</th>
-        <th scope="col">theoretical Point</th>
-        <th scope="col">practice Points</th>
-        <th scope="col">describe</th>
-        <th scope="col">evaluate</th>
-        <th scope="col">class</th>
-        <th colspan="2" scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <%listStudent.forEach(student=>{%>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">theoretical Point</th>
+            <th scope="col">practice Points</th>
+            <th scope="col">describe</th>
+            <th scope="col">evaluate</th>
+            <th scope="col">class</th>
+            <th colspan="2" scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
         <tr>
             <th scope="row"><%=student._id%></th>
-            <td> <a href="/detail/<%=student._id%>"><%=student.name%></a></td>
+            <td><%=student.name%></td>
             <td><%=student.theoreticalPoint%></td>
             <td><%=student.practicePoints%></td>
             <td><%=student.describe%></td>
             <td><%=student.evaluate%></td>
             <td><%=student.class%></td>
-            <td><a href="/delete/<%=student._id%>" onclick="return(confirm('bạn có chắc muốn xoá'))" class="btn btn-outline-danger">delete</a></td>
-            <td><a href="/edit/<%=student._id%>" class="btn btn-outline-primary">edit</a></td>
+            <td><a href="/"  class="btn btn-outline-danger">Out</a></td>
         </tr>
-    <%})%>
-    </tbody>
-</table>
+        </tbody>
+    </table>
 </div>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-<script src="sorttable.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>

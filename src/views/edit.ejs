@@ -13,21 +13,35 @@
 <body>
 <%- include('header.ejs') -%>
 <div class="container">
-    <form action="/edit/<%=product._id%>" method="post">
+    <form method="post" action="/create">
         <div class="form-group">
             <label for="exampleInputEmail1">name</label>
-            <input type="text" name="name" class="form-control" id="exampleInputEmail1" value="<%=product.name%>">
+            <input type="text" name="name" class="form-control" value="<%=student.name%>" id="exampleInputEmail1" placeholder="name">
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">age</label>
-            <input type="number" name="age" class="form-control" id="exampleInputPassword1" value="<%=product.age%>">
+            <label for="exampleInputPassword1">theoreticalPoint</label>
+            <input type="number" name="theoreticalPoint" value="<%=student.theoreticalPoint%>" class="form-control" id="exampleInputPassword1" placeholder="theoreticalPoint">
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">score</label>
-            <input type="number" name="score" class="form-control" id="exampleInputPassword1" value="<%=product.score%>">
+            <label for="exampleInputPassword1">practicePoints</label>
+            <input type="number" name="practicePoints" value="<%=student.practicePoints%>" class="form-control" id="exampleInputPassword1" placeholder="practicePoints">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">describe</label>
+            <input type="text" name="describe" value="<%=student.describe%>" class="form-control" id="exampleInputPassword1" placeholder="describe">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">evaluate</label>
+            <input type="text" name="evaluate" value="<%=student.evaluate%>" class="form-control" id="exampleInputPassword1" placeholder="evaluate">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">class</label>
+            <input type="text" name="class" value="<%=student.class%>" class="form-control" id="exampleInputPassword1" placeholder="class">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/" class="btn btn-primary">Out</a>
     </form>
 </div>
 <!-- Optional JavaScript -->
