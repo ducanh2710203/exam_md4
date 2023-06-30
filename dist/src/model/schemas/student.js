@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Student = void 0;
 const mongoose_1 = require("mongoose");
-const productSchema = new mongoose_1.Schema({
+const StudentSchema = new mongoose_1.Schema({
     name: String,
     theoreticalPoint: Number,
     practicePoints: Number,
@@ -10,5 +10,5 @@ const productSchema = new mongoose_1.Schema({
     evaluate: String,
     class: String
 });
-exports.Student = (0, mongoose_1.model)('product', productSchema);
+exports.Student = (0, mongoose_1.model)('Student', StudentSchema);
 //# sourceMappingURL=student.js.map

@@ -3,7 +3,6 @@ import {Student} from "../model/schemas/student";
 class HomeController {
     static async getHomePage(req, res) {
         try {
-            const listStudent = await Student.find()
             const sortStudent = await Student.find().sort({"theoreticalPoint": 1})
             res.render('home', {listStudent:sortStudent})
         } catch (err) {
@@ -37,6 +36,7 @@ class HomeController {
     static async EditStudent(req, res) {
         try {
             const id = req.params.id
+
             const currentStudent = await Student.findOne({_id: id})
             if(currentStudent){
                 currentStudent.name = req.body.name;
@@ -46,9 +46,11 @@ class HomeController {
                 currentStudent.evaluate = req.body.evaluate;
                 currentStudent.class = req.body.class;
                 await currentStudent.save();
+                // await Student.updateOne({_id: id},
+                //     {$set:{currentStudent}})
                 res.redirect('/')
             }else {
-                res.redirect("/edit/:id")
+                res.redirect("/fj")
             }
         } catch (err) {
             console.log(err.message)

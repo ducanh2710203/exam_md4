@@ -1,5 +1,5 @@
 import { Schema,model } from "mongoose";
-const productSchema = new Schema({
+const StudentSchema = new Schema({
     name: String,
     theoreticalPoint: Number,
     practicePoints: Number,
@@ -7,4 +7,4 @@ const productSchema = new Schema({
     evaluate: String,
     class:String
 })
-export const Student = model('product',productSchema)
+export const Student = model('Student',StudentSchema)

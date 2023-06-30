@@ -8,3 +8,6 @@ export const router = Router();
     router.get('/edit/:id', HomeController.getEditPage)
     router.post('/edit/:id', HomeController.EditStudent)
     router.get('/detail/:id', HomeController.getDetailPage)
+    router.get('*', (req, res)=>{
+        res.render('404')
+    })

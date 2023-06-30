@@ -4,7 +4,6 @@ const student_1 = require("../model/schemas/student");
 class HomeController {
     static async getHomePage(req, res) {
         try {
-            const listStudent = await student_1.Student.find();
             const sortStudent = await student_1.Student.find().sort({ "theoreticalPoint": 1 });
             res.render('home', { listStudent: sortStudent });
         }
@@ -49,7 +48,7 @@ class HomeController {
                 res.redirect('/');
             }
             else {
-                res.redirect("/edit/:id");
+                res.redirect("/fj");
             }
         }
         catch (err) {

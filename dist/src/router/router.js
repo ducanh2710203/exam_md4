@@ -14,4 +14,7 @@ exports.router.get('/delete/:id', home_controller_1.default.deleteStudent);
 exports.router.get('/edit/:id', home_controller_1.default.getEditPage);
 exports.router.post('/edit/:id', home_controller_1.default.EditStudent);
 exports.router.get('/detail/:id', home_controller_1.default.getDetailPage);
+exports.router.get('*', (req, res) => {
+    res.render('404');
+});
 //# sourceMappingURL=router.js.map
