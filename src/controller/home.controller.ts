@@ -36,14 +36,14 @@ class HomeController {
     static async EditStudent(req, res) {
         try {
             const id = req.params.id
-
+            let {name,theoreticalPoint,practicePoints,describe,evaluate}= req.body
             const currentStudent = await Student.findOne({_id: id})
             if(currentStudent){
-                currentStudent.name = req.body.name;
-                currentStudent.theoreticalPoint = req.body.theoreticalPoint;
-                currentStudent.practicePoints = req.body.practicePoints;
-                currentStudent.describe = req.body.describe;
-                currentStudent.evaluate = req.body.evaluate;
+                currentStudent.name = name;
+                currentStudent.theoreticalPoint = theoreticalPoint;
+                currentStudent.practicePoints = practicePoints;
+                currentStudent.describe = describe;
+                currentStudent.evaluate = evaluate;
                 currentStudent.class = req.body.class;
                 await currentStudent.save();
                 // await Student.updateOne({_id: id},
@@ -64,7 +64,7 @@ class HomeController {
                 await newStudent.save()
                 res.redirect('/')
             }else {
-                res.redirect("/edit/:id")
+                res.redirect("/")
             }
         } catch (err) {
             console.log(err.message)
